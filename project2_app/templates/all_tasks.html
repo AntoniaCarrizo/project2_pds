@@ -1,0 +1,49 @@
+<head>
+    <!-- USE DEVELOPMENT VERSION -->
+    <meta charset="utf-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+  
+    <title>Proyecto de Desarrollo de Sotfware - Proyecto 2</title>
+  </head>
+
+<div id="topbar">
+    <div>
+        <h1 style="text-decoration: underline;">
+        <img src="{% static '/images/logouandes.png' %}" width="168"
+        height="67">
+        Intelligent Tutoring System - Estatica
+        </h1>
+    </div>
+    <div style="margin-left: 1rem;">
+        {% if tasks_list %}
+            <table>
+                <tr>
+                    <td>Descripcion</td>
+                    <th></th>
+                </tr>
+                {% for task in tasks_list %}
+                <tr>
+                        <td>{{ task.description }}</td>
+                        <td>
+                            <button>
+                                <a class="btn btn-primary"
+                               href="{% url 'edit_task' task_id=task.id %}">
+                               Editar
+                            </a>
+                            </button>
+                            
+                        </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>&nbsp No hay tareas</p>
+        {% endif %}
+        <div class="d-flex justify-content-center" style="margin-top: 1rem;">
+            <button class="btn btn-primary" type="button" onclick="location.href='{% url 'new_task' %}'">
+                Crear Tarea
+            </button>
+        </div>
+    </div>
+</div>
